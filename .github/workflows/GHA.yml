@@ -60,3 +60,8 @@ jobs:
         # Only run apply if we are on the main branch and it's a push/merge event
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve -input=false
+      - name: Wait for 10 Minutes
+        run: sleep 600
+
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve -input=false
